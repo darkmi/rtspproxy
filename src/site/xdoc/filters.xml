@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+	<properties>
+		<title>Filters</title>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+	</properties>
+
+	<body>
+		<section name="Filters">
+			<subsection name="Authorization and Authentication">
+				<p>
+					The RtspProxy is capable of restricting access only
+					to authorized clients. This access control scheme is
+					completeley separated from the server access control
+					because it's proxy specific.
+				</p>
+				<p>
+					If the server ask for authentication to give access
+					to media content, the two access control layers will
+					work together, providing a two step authentication.
+					The proxy will forward client authorization data to
+					the server in order to obtain itself access to
+					protected contents.
+				</p>
+				<p>
+					There are two possible access control schemes that
+					can be enabled at the proxy level, one based on
+					user/password data sent by client and the other that
+					use the client IP address or host name.
+				</p>
+			</subsection>
+		</section>
+	</body>
+</document>

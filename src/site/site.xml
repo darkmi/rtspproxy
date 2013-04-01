@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="RTSP Proxy">
+
+	<bannerRight>
+		<name>RTSP Proxy</name>
+		<src>images/logo.png</src>
+		<href>http://rtspproxy.berlios.de</href>
+	</bannerRight>
+
+	<body>
+		<!-- Links defined across the top right of the site -->
+		<links>
+			<item
+				name="merlimat.net"
+				href="http://merlimat.net/" />
+		</links>
+
+		<menu name="Rtsp Proxy">
+			<item
+				name="Home"
+				href="index.html" />
+			<item
+				name="Overview"
+				href="overview.html" />
+			<item
+				name="Configuration"
+				href="configuration.html">
+				
+				<item
+					name="Compile from sources"
+					href="sources.html" />
+				<item
+					name="Filters"
+					href="filters.html">
+					<item
+						name="Authentication"
+						href="authentication.html" />
+					<item
+						name="IP address filter"
+						href="ipAddressFilter.html" />
+				</item>
+			</item>
+		</menu>
+
+		<menu name="Project">
+			<item
+				name="Download"
+				href="download.html" />
+			<item
+				name="Mailing Lists"
+				href="mail-lists.html" />
+			<item
+				name="Team"
+				href="team-list.html" />
+			<item
+				name="Changes"
+				href="changes-report.html" />
+			<item
+				name="Issue Tracking"
+				href="issue-tracking.html" />
+			<item
+				name="License"
+				href="license.html" />
+		</menu>
+
+		<menu name="Development">
+			<item
+				name="SVN"
+				href="source-repository.html" />
+			<item
+				name="Todo"
+				href="todo.html" />
+			<item
+				name="Change Log"
+				href="changelog.html" />
+			<item
+				name="File Activity"
+				href="file-activity.html" />
+				<!-- 
+			<item
+				name="Javadocs"
+				href="apidocs/index.html"
+				target="_blank" />
+				-->
+		</menu>
+
+	</body>
+</project>

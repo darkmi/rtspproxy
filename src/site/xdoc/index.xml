@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+
+	<properties>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+		<title>RTSP Proxy</title>
+	</properties>
+
+	<body>
+
+
+		<section name="Home">
+
+			<p>
+				RtspProxy is a proxy server for multimedia streaming
+				services based on the
+				<a href="http://www.rtsp.org">RTSP</a>
+				protocol.
+			</p>
+
+			<p>
+				The current version is a complete rewrite from scratch
+				in Java of previous versions based on C++. The goal is
+				to build a robust and scalable system usable in 
+				production environment.
+			</p>
+
+			<p>
+				The proxy is based on an asynchronous network framework,
+				<a
+					href="http://directory.apache.org/subprojects/network">
+					Apache MINA
+				</a>	, which is built on Java NIO. This framework does permit
+				to RtspProxy to handle high loads and concurrent users.
+			</p>
+
+		</section>
+
+
+		<section name="News">
+			<subsection name="08 Dec 2005 - Released RtspProxy 3.0-ALPHA2">
+				<p>
+				</p>
+			</subsection>
+		
+			<subsection
+				name="24 Oct 2005 - Released RtspProxy 3.0-ALPHA1">
+				<p>
+					The first release of the brand new Java based
+					RtspProxy branch has been released.
+				</p>
+				<p>
+					Please keep aware that this is nothing more than a 
+					"<i>Technology Preview</i>"
+					to test the new proxy architecture. Implemented
+					features are reduced to minimal. At now the proxy works 
+					for RTP over UDP streaming sessions.
+				</p>
+				<p>
+					
+				</p>
+			</subsection>
+
+		</section>
+
+	</body>
+</document>

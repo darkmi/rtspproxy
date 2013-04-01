@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>RTSP Proxy</name>
+	<groupId>net.merlimat</groupId>
+	<artifactId>rtspproxy</artifactId>
+	<version>1.0</version>
+	<url>http://rtspproxy.berlios.de</url>
+	<inceptionYear>2013</inceptionYear>
+
+	<organization>
+		<name>DarkMi</name>
+		<url>http://www.darkmi.com</url>
+	</organization>
+
+	<properties>
+		<!-- 主要依赖库的版本定义 -->
+		<struts2.version>2.2.1</struts2.version>
+		<activemq.version>5.4.0</activemq.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<commons-pool.version>1.6</commons-pool.version>
+		<!-- Plugin的属性定义 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<issueManagement>
+		<system>Berlios</system>
+		<url>http://developer.berlios.de/bugs/?group_id=4526</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License</name>
+			<url>LICENSE.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>merlimat</id>
+			<name>Matteo Merli</name>
+			<email>matteo.merli@gmail.com</email>
+			<!-- <timezone>+1</timezone> -->
+			<url>http://merlimat.net/about</url>
+		</developer>
+	</developers>
+
+	<!-- <scm> <connection> scm:svn:http://svn.berlios.de/svnroot/repos/rtspproxy/trunk 
+		</connection> <developerConnection> scm:svn:https://svn.berlios.de/svnroot/repos/rtspproxy/trunk 
+		</developerConnection> <url>http://svn.berlios.de/wsvn/rtspproxy/</url> </scm> 
+		<mailingLists> <mailingList> <name>Development list</name> <post>rtspproxy-devel@lists.berlios.de</post> 
+		<archive> http://www.nabble.com/RtspProxy-Devel-f6753.html </archive> <subscribe> 
+		https://lists.berlios.de/mailman/listinfo/rtspproxy-devel </subscribe> <unsubscribe> 
+		https://lists.berlios.de/mailman/listinfo/rtspproxy-devel </unsubscribe> 
+		</mailingList> </mailingLists> <distributionManagement> <downloadUrl> http://rtspproxy.berlios.de/download.html 
+		</downloadUrl> <site> <id>rtspproxy.website</id> <name>Default Site</name> 
+		<url> scp://shell.berlios.de/home/groups/rtspproxy/htdocs </url> </site> 
+		</distributionManagement> -->
+
+	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://10.10.20.201:8081/nexus/content/groups/public</url>
+		</repository>
+
+		<repository>
+			<id>offical</id>
+			<name>Maven Official Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>springside</id>
+			<name>SpringSide Additional Repository</name>
+			<url>http://springside.googlecode.com/svn/repository</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>jboss</id>
+			<name>Jboss Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>java.net</id>
+			<name>Java.net Repository</name>
+			<url>http://download.java.net/maven/2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>morphia.googlecode.com</id>
+			<name>morphia.googlecode.com Repository</name>
+			<url>http://morphia.googlecode.com/svn/mavenrepo/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<!-- logging begin -->
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- slf4j-log4j绑定 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- slf4j没有log4j的情形 -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>oro</groupId>
+					<artifactId>oro</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- logging end -->
+
+
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-core</artifactId>
+			<version>2.0.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>assembly:directory</defaultGoal>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
+				<configuration> <descriptor> src/resources/release/default.xml </descriptor> 
+				</configuration> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<outputEncoding>UTF-8</outputEncoding>
+				</configuration>
+				<!-- <version>2.0-beta-2</version> -->
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>changes-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>announcement-generate</goal>
+						</goals>
+						<id>announcement-generate</id>
+					</execution>
+					<execution>
+						<goals>
+							<goal>announcement-mail</goal>
+						</goals>
+						<id>announcement-mail</id>
+					</execution>
+				</executions>
+				<configuration>
+					<xmlPath>src/changes</xmlPath>
+
+					<smtpHost>mail.yourhost.com</smtpHost>
+					<smtpPort implementation="java.lang.Integer">
+						25
+					</smtpPort>
+					<toAddresses>
+						<toAddress implementation="java.lang.String">
+							someones@email.com
+						</toAddress>
+						<toAddress implementation="java.lang.String">
+							anothersomeone@email.com
+						</toAddress>
+					</toAddresses>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<targetJdk implementation="java.lang.String">
+						1.5
+					</targetJdk>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>
+					maven-project-info-reports-plugin
+				</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>changelog-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>surefire-report-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>changes-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<charset>UTF-8</charset>
+					<docencoding>UTF-8</docencoding>
+					<link> http://java.sun.com/j2se/1.5.0/docs/api/,
+						http://www.junit.org/junit/javadoc/3.8.1/,
+						http://directory.apache.org/subprojects/network/apidocs/
+					</link>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<targetJdk implementation="java.lang.String">1.5</targetJdk>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+</project>

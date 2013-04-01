@@ -1,0 +1,23 @@
+
+# This file should contains the rules for IP address 
+# based filter
+# The rules are processed in order, so keep attention on that.
+# The ip addresses or host names can contain wildcards (*) to
+# match many addresses.
+# Lines starting with "#" are comments.
+
+# Example 1
+# Block all addresses except a few ones:
+#
+# Deny *
+# Allow 127.0.0.1
+# Allow 10.0.0.*
+# Allow *.mydomain.com
+
+# Example 2
+# Blocks only few addresses:
+#
+# Allow *
+# Deny 192.23.210.1
+# Deny *.other-domain.com
+

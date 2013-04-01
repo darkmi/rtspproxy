@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+	<properties>
+		<title>Configuration</title>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+	</properties>
+
+	<body>
+		<section name="Configuration">
+			<subsection name="Installation">
+				<p>
+					Download the binary package from
+					<a href="download.html">download page</a>
+					and unpack it into a convenient location on the
+					filesystem.
+				</p>
+				<p>
+					If you want to be able to launch the proxy from any
+					position, you should add the proxy folder to the
+					<code>PATH</code>
+					environment variable.
+				</p>
+				<source>$ export PATH=$PATH:/path/to/rtspproxy/folder</source>
+			</subsection>
+
+			<subsection name="Setup">
+				<p>
+					The proxy parameters are managed trough a
+					configuration file located in
+					<code>conf/rtspproxy.properties</code>
+					. This is where all the settings can be modified.
+				</p>
+				<p>
+					This configuration file is a standard Java
+					properties file. For those unfamiliar with this
+					format, this is a INI-like text based format. For a
+					complete description, please refer to Java API
+					documentation
+					<a
+						target="_blank"
+						href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Properties.html#load(java.io.InputStream)">
+						Properties section
+					</a>
+					.
+				</p>
+
+
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<code>log.debug</code>
+							</td>
+							<td>Boolean</td>
+							<td>
+								<code>false</code>
+							</td>
+							<td>
+								This flag let you to enable or disable
+								the debug output of the program..
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>log.logtofile</code>
+							</td>
+							<td>Boolean</td>
+							<td>
+								<code>false</code>
+							</td>
+							<td>
+								If you want to save to a file the debug
+								output set this to
+								<code>true</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>log.file</code>
+							</td>
+							<td>String</td>
+							<td>
+								<code>./rtspproxy.log</code>
+							</td>
+							<td>
+								Specify the full path of the log file
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.rtsp.port</code>
+							</td>
+							<td>Integer</td>
+							<td>554</td>
+							<td>
+								This is the port at which the proxy will
+								listen for RTSP connection.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.rtsp.interface</code>
+							</td>
+							<td>String</td>
+							<td>*</td>
+							<td>
+								If you need to define a particular
+								network interface to bind on, specify it
+								here. Default is to listen on all
+								interfaces.
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<code>proxy.server.rtp.port</code>
+							</td>
+							<td>Integer</td>
+							<td>6970</td>
+							<td>
+								This is the ports to listen for RTP
+								packets arriving from servers.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.server.rtcp.port</code>
+							</td>
+							<td>Integer</td>
+							<td>6971</td>
+							<td>
+								This is the ports to listen for RTCP
+								packets arriving from servers.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.server.interface</code>
+							</td>
+							<td>String</td>
+							<td>*</td>
+							<td>
+								Network interface to listen for RTP/RTCP
+								packets from servers. Default is to
+								listen on all interfaces.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.server.dynamicPorts</code>
+							</td>
+							<td>Boolean</td>
+							<td>
+								<code>false</code>
+							</td>
+							<td>
+								If true the proxy will try to bind the
+								listener for packet in the first
+								available ports.
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<code>proxy.client.rtp.port</code>
+							</td>
+							<td>Integer</td>
+							<td>6970</td>
+							<td>
+								This is the ports to listen for RTP
+								packets arriving from clients.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.client.rtcp.port</code>
+							</td>
+							<td>Integer</td>
+							<td>6971</td>
+							<td>
+								This is the ports to listen for RTCP
+								packets arriving from clients.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.client.interface</code>
+							</td>
+							<td>String</td>
+							<td>*</td>
+							<td>
+								Network interface to listen for RTP/RTCP
+								packets from clients. Default is to
+								listen on all interfaces.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>proxy.client.dynamicPorts</code>
+							</td>
+							<td>Boolean</td>
+							<td>
+								<code>false</code>
+							</td>
+							<td>
+								If true the proxy will try to bind the
+								listener for packet in the first
+								available ports.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</subsection>
+			
+			<subsection name="Running RtspProxy">
+			
+				<p>
+					On Unix-like systems the proxy can be launched using the script
+					located in the base directory: 
+				</p>	
+				<source>$ ./rtspproxy</source>
+				
+				<p>
+					For Windows systems there is a batch script: <code>rtspproxy.bat</code>. 
+				</p>
+			
+			</subsection>
+				
+		</section>
+	</body>
+</document>
+

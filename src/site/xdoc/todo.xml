@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+
+	<properties>
+		<title>ToDos</title>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+	</properties>
+
+	<body>
+
+		<section name="Todo">
+
+			<subsection name="Big Tasks">
+
+				<p>
+					Port of the cache management code from C++ to new
+					Java system.
+				</p>
+
+			</subsection>
+
+			<subsection name="Other Tasks">
+				<table>
+					<thead>
+						<tr>
+							<th>Task</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr>
+							<td>
+								<strong>Live Streams Reflection</strong>
+							</td>
+							<td>
+								Live streams must be identified and when
+								more than one client ask for the same
+								live stream, the proxy must use the same
+								server source, avoiding asking multiple
+								time for the same resource.
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<strong>Reverse Proxy</strong>
+							</td>
+							<td>
+								The proxy should be able to work as a
+								front-end for other RTSP servers.
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<strong>Daemon mode</strong>
+							</td>
+							<td>
+								The proxy should be able to work as a
+								Unix daemon with script for start/stop
+								in a linux/unix/mac environment, and as
+								a NT service in windows.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<strong>Proxy Authorization</strong>
+							</td>
+							<td>
+								If enabled only authorized user can
+								access to proxy. A generic system should
+								be used, allowing for interchanging
+								different authorization back-ends.
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<strong>
+									Remote Management Interface
+								</strong>
+							</td>
+							<td>
+								Interface to monitor all proxy related
+								parameters and to allow on-the-fly
+								configuration modifications.
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</subsection>
+		</section>
+	</body>
+
+</document>

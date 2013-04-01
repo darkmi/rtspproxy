@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+	<properties>
+		<title>Compiling from sources</title>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+	</properties>
+
+	<body>
+		<section name="Compiling from sources">
+			<p>
+				In order to compile the sources, you will need the
+				<a href="http://maven.apache.org">Maven 2</a>
+				tool. This is a tool that assist in project management,
+				builds and releases and it is especially tailored to
+				Java projects. Please refer to its website for
+				installing and configuring it.
+			</p>
+			<p>
+				Once you have Maven configured and working you can
+				compile the project simply by doing:
+			</p>
+			<source>$ mvn</source>
+			<p>in the base project folder.</p>
+			<p>
+				This will produce, if there are no problems, a folder
+				named
+				<code>
+					target/rtspproxy-<i>[version]</i>-default
+				</code>
+				containing the binaries.
+			</p>
+
+			<p>To generate the documentation, just enter:</p>
+			<source>$ mvn site</source>
+			<p>
+				Documentation will be put under
+				<code>target/site</code>
+				directory.
+			</p>
+			
+			<subsection name="Eclipse">
+				<p>
+					If you want to import the project into 
+					<a href="http://www.eclipse.org">Eclipse</a>, you can generate 
+					the project files using:
+				</p>
+				<source>$ mvn eclipse:eclipse</source>
+				<p>
+					Also, be sure to check that the <code>M2_REPO</code> variable 
+					is defined in Eclipse. If not, set it to the path of your
+					Maven repository which in Unix systems is usually located
+					in 
+					<code>~/.m2/repository</code>.
+				</p>
+				
+			</subsection>
+		</section>
+	</body>
+</document>
+

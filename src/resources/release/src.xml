@@ -1,0 +1,28 @@
+<assembly>
+	<id>src</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src</directory>
+			<outputDirectory>/src</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<includes>
+				<include>*.txt</include>
+				<include>pom.xml</include>
+			</includes>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/resources/scripts</directory>
+			<includes>
+				<include>*</include>
+			</includes>
+			<fileMode>755</fileMode>
+			<outputDirectory>/src/resources/scripts</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>

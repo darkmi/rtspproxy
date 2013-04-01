@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+
+	<properties>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+		<title>Download</title>
+	</properties>
+
+	<body>
+
+		<section name="Download">
+
+			<subsection name="Requirements">
+				<p>
+					The RTSP proxy project is entirely coded in Java. In
+					particular it needs the Java 5 platform.
+				</p>
+				<p>
+					Additionally, if you want to compile from Java
+					sources, you will need
+					<a href="http://maven.apache.org/maven2">Maven 2</a>
+					.
+				</p>
+			</subsection>
+
+			<subsection name="Current release">
+				<table>
+					<thead>
+						<tr>
+							<th>File name</th>
+							<th>Type</th>
+							<th>Size</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<a
+									href="http://download.berlios.de/rtspproxy/rtspproxy-3.0-ALPHA2-src.zip">
+									rtspproxy-3.0-ALPHA2-src.zip
+								</a>
+							</td>
+							<td>Sources</td>
+							<td>536 KB</td>
+						</tr>
+						<tr>
+							<td>
+								<a
+									href="http://download.berlios.de/rtspproxy/rtspproxy-3.0-ALPHA2-bin.zip">
+									rtspproxy-3.0-ALPHA2-bin.zip
+								</a>
+							</td>
+							<td>Binaries</td>
+							<td>1903 KB</td>
+						</tr>
+					</tbody>
+				</table>
+			</subsection>
+
+			<subsection name="Previous Branch">
+				<p>
+					The previous branch of development of the RTSP proxy
+					is still available for download.
+				</p>
+
+				<table>
+					<thead>
+						<tr>
+							<th>File name</th>
+							<th>Type</th>
+							<th>Size</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<a
+									href="http://merlimat.net/wp-content/rtspproxy-2.4.1.tar.gz">
+									rtspproxy-2.4.1.tar.gz
+								</a>
+							</td>
+							<td>Sources</td>
+							<td>300 KB</td>
+						</tr>
+					</tbody>
+				</table>
+			</subsection>
+
+		</section>
+
+	</body>
+</document>

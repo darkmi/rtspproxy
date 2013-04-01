@@ -1,0 +1,6 @@
+
+# List here the users and passwords
+#
+# myuser : itspassword
+# joe : zxsfsdfdsdg
+#

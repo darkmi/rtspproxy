@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+	<properties>
+		<title>Filters</title>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+	</properties>
+
+	<body>
+		<section name="Filters">
+			<subsection name="IP address / host name filter">
+				<p>
+					This access control scheme does use a set of user
+					defined rules to evaluate if a client has or not the
+					right to use the proxy services.
+				</p>
+				<p>
+					The default implementation of this filter reads the
+					rules from a plain text file located in
+					<code>conf/ipfilter.txt</code>
+					.
+				</p>
+
+
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<code>
+									proxy.filter.ipaddress.enable
+								</code>
+							</td>
+							<td>Boolean</td>
+							<td>
+								<code>false</code>
+							</td>
+							<td>
+								This flag let you to enable or disable
+								the IP address filter.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>
+									proxy.filter.ipaddress.
+	implementationClass
+								</code>
+							</td>
+							<td>String</td>
+							<td>
+								<code>
+									rtspproxy.filter.ipaddress.
+	PlainTextIpAddressProvider
+								</code>
+							</td>
+							<td>
+								Name of a class that implements the
+								<code>
+									rtspproxy.filter.ipaddress. IpAddressProvider
+								</code>
+								interface.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<subsection name="Plain text Implementation">
+					<p>
+						This is the default implementation of the IP
+						address filter. It reads the rules from a plain
+						text file and try to match IP address and
+						hostname of clients with these rules.
+					</p>
+					<p>
+						The rules file consist of a sequence of
+						directives, for example:
+					</p>
+					<source>Deny * 
+Allow 10.0.0.* 
+Allow *.mydomain.com	</source>
+					<p>
+						The order of the rules is extremely important,
+						because the client address will be compared with
+						all of these rules in the given order. In the
+						example, the above rules file states that are
+						denied all connection except from clients which
+						addresses are in the subnet
+						<code>10.0.0.0-255</code>
+						and those that have an hostname that contains
+						<code>mydomain.com</code>
+						.
+					</p>
+					<p>
+						The inverse situation would be to allow
+						connection from all addresses and deny a few
+						selected ones.
+					</p>
+					<source>Allow * 
+Deny 192.123.25.* 
+Deny *.bad-domain.com	</source>
+					<p>
+						You can put as many rules as you want to acheive
+						a fine grained access control.
+					</p>
+					<subsection name="Properties">
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<code>
+											proxy.filter.ipaddress.text.file
+										</code>
+									</td>
+									<td>String</td>
+									<td>
+										<code>conf/ipfilter.txt</code>
+									</td>
+									<td>Location of the rules file.</td>
+								</tr>
+							</tbody>
+						</table>
+					</subsection>
+				</subsection>
+
+				<subsection
+					name="Using an alternative implementation">
+					<p>
+						Sometimes a fixed set of rules is not enough to
+						set up a good access control policy, or perhaps
+						the authorization must be integrated with an
+						existing system.
+					</p>
+					<p>
+						In all of these situations, you can provide a
+						custom implementation of the backend. All it
+						needs to be done is to provide a class that
+						implements the
+						<code>proxy.filter.ipaddress.IpAddressProvider</code>
+						interface.
+					</p>
+					<source>public interface IpAddressProvider 
+{ 
+	public void init() throws Exception; 
+	public void shutdown() throws Exception; 
+	public boolean isBlocked( InetAddress address ); 
+}</source>
+					<p>
+						This interface is only composed of three
+						methods:
+					</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Method</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>init()</td>
+								<td>
+									Called at startup. Should be used to
+									properly setup the subsystem.
+								</td>
+							</tr>
+							<tr>
+								<td>shutdown()</td>
+								<td>
+									Called before the proxy shutdown.
+									Should be used close opened
+									connections...
+								</td>
+							</tr>
+							<tr>
+								<td>
+									isBlocked( InetAddress address )
+								</td>
+								<td>
+									This method must return
+									<code>true</code>
+									if the connection from the given
+									<code>address</code>
+									should be closed or
+									<code>false</code>
+									otherwise.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>
+						To use your custom implementation instead of the
+						default one, the class should be made available
+						in the Java ClassPath (eg: by putting the
+						containing Jar in the
+						<code>lib</code>
+						directory). Then you should tell the
+						IpAddressFilter to use your implementation by
+						adding the following line in the
+						<code>rtspproxy.properties</code>
+						file.
+					</p>
+					<source>proxy.filter.ipaddress.implementationClass = path.to.MyCustomClass</source>
+
+				</subsection>
+
+			</subsection>
+		</section>
+	</body>
+</document>

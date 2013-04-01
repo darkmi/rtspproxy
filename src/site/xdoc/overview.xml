@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+
+	<properties>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+		<title>Overview</title>
+	</properties>
+
+	<body>
+
+
+		<section name="Introduction">
+			<subsection name="What is RtspProxy">
+				<p>
+					It is a proxy server that works with the RTSP
+					protocol in multimedia streaming reproduction. RTSP
+					(Real Time Streaming Protocol) is an emerging
+					protocol for "session initiation" scopes, its
+					purpose is to establish the conditions of an
+					audio-video streaming session. The streaming data is
+					then sent over other channels using other protocol
+					such as RTP (Real Time Protocol).
+				</p>
+				<p>
+					Using a RTSP proxy does permits to access multimedia
+					content without the need of being
+					<i>directly</i>
+					connected to the internet, for example being behind
+					a corporate firewall.
+				</p>
+				<p>
+					The tipical configuration for most environments is
+					illustrated in the following diagram.
+				</p>
+			</subsection>
+
+			<div align="center">
+				<img src="images/overview.png" />
+			</div>
+
+			<p>
+				
+			</p>
+
+		</section>
+
+
+
+	</body>
+</document>

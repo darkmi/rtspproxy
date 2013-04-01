@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<document>
+	<properties>
+		<title>Authentication</title>
+		<author email="matteo.merli@gmail.com">Matteo Merli</author>
+	</properties>
+
+	<body>
+		<section name="Authentication">
+			<p>
+				<b>Beware: The authentication support is still a work in progress.</b>
+			</p>
+			<p>
+				The RTSP specification foresees the optional presence of
+				a proxy-level authentication layer. This authentication
+				works in the same way of RTSP and HTTP server
+				authentication.
+
+			</p>
+			
+							<p>
+					The default implementation of this filter reads the
+					users from a plain text file located in
+					<code>conf/users.txt</code>.
+				</p>
+
+
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<code>
+									proxy.filter.authentication.enable
+								</code>
+							</td>
+							<td>Boolean</td>
+							<td>
+								<code>false</code>
+							</td>
+							<td>
+								This flag let you to enable or disable
+								the authentication filter.
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>
+									proxy.filter.authentication.
+	implementationClass
+								</code>
+							</td>
+							<td>String</td>
+							<td>
+								<code>
+									rtspproxy.filter.authentication.
+	PlainTextAuthenticationProvider
+								</code>
+							</td>
+							<td>
+								Name of a class that implements the
+								<code>
+									rtspproxy.filter.authentication. AuthenticationProvider
+								</code>
+								interface.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<subsection name="Plain text Implementation">
+					<p>
+						This is the default implementation of the authentication
+						 filter. The users and associated password 
+						 should be contained into a a text file, by default
+						 located in <code>conf/users.txt</code>.
+					</p>
+					<p>
+						The users file will contain one user per line:
+					</p>
+					<source>joe : joepass 
+bill : passwd</source>
+					<p>
+						That's all you need to know.
+					</p>
+					<subsection name="Properties">
+						<table>
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Type</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<code>
+											proxy.filter.authentication.text.file
+										</code>
+									</td>
+									<td>String</td>
+									<td>
+										<code>conf/users.txt</code>
+									</td>
+									<td>Location of the users file.</td>
+								</tr>
+							</tbody>
+						</table>
+					</subsection>
+				</subsection>
+
+				<subsection
+					name="Using an alternative implementation">
+					<p>
+						The PlainTextAuthenticationProvider is a very basic 
+						backend system, mostly meant as a guideline. 
+						In real world situations users will be kept in a 
+						relational database, LDAP, etc..
+					</p>
+					<p>
+						In all of these situations, you can provide a
+						custom implementation of the backend. All it
+						needs to be done is to provide a class that
+						implements the
+						<code>proxy.filter.authentication.AuthenticationProvider</code>
+						interface.
+					</p>
+					<source>public interface AuthenticationProvider 
+{ 
+	public void init() throws Exception; 
+	public void shutdown() throws Exception; 
+	public boolean isAuthenticated( Credentials credentials );
+}</source>
+					<p>
+						This interface is only composed of three
+						methods:
+					</p>
+					<table>
+						<thead>
+							<tr>
+								<th>Method</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>init()</td>
+								<td>
+									Called at startup. Should be used to
+									properly setup the subsystem.
+								</td>
+							</tr>
+							<tr>
+								<td>shutdown()</td>
+								<td>
+									Called before the proxy shutdown.
+									Should be used close opened
+									connections...
+								</td>
+							</tr>
+							<tr>
+								<td>
+									public boolean isAuthenticated( Credentials credentials )
+								</td>
+								<td>
+									This method must return
+									<code>true</code>
+									if the user identificated with 
+									<code>credentials</code> has the right
+									to access to the RtspProxy system
+									and <code>false</code>
+									otherwise.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<p>
+						<code>Credentials</code> is a class that holds the data supplied
+						by the user, typically username and password.
+					</p>
+
+					<p>
+						To use your custom implementation instead of the
+						default one, the class should be made available
+						in the Java ClassPath (eg: by putting the
+						containing Jar in the
+						<code>lib</code>
+						directory). Then you should tell the
+						AuthenticationFilter to use your implementation by
+						adding the following line in the
+						<code>rtspproxy.properties</code>
+						file.
+					</p>
+					<source>proxy.filter.authentication.implementationClass = path.to.MyCustomClass</source>
+
+				</subsection>
+
+		</section>
+	</body>
+</document>
