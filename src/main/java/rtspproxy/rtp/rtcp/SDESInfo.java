@@ -41,13 +41,16 @@ public class SDESInfo implements RtcpInfo {
 
 	private class Chunk {
 
+		@SuppressWarnings("unused")
 		public int ssrc;
 		public Type type;
+		@SuppressWarnings("unused")
 		public byte[] value;
 	}
 
 	private Chunk[] chunkList;
 
+	@SuppressWarnings("incomplete-switch")
 	public SDESInfo(RtcpPacket packet, ByteBuffer buffer) {
 		// int totalBytesToRead = packet.length * 4;
 		byte sourceCount = packet.count;
