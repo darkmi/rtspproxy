@@ -18,18 +18,14 @@
 
 package rtspproxy;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.security.Provider.Service;
 
 import org.apache.log4j.Logger;
 import org.apache.mina.core.session.IoSession;
 
 import rtspproxy.lib.PortManager;
-import rtspproxy.proxy.ServerRtcpPacketHandler;
-import rtspproxy.proxy.ServerRtpPacketHandler;
 
 /**
  * @author Matteo Merli

@@ -70,6 +70,7 @@ public class ServerRtpPacketHandler extends IoHandlerAdapter {
 	 * @see org.apache.mina.io.IoHandlerAdapter#exceptionCaught(org.apache.mina.io.IoSession,
 	 *      java.lang.Throwable)
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
 		log.debug("Exception: " + cause);

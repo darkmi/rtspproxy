@@ -28,8 +28,7 @@ import java.util.Vector;
  * @author deruelle
  * @version 1.0
  */
-public interface MediaDescription extends Serializable, Cloneable
-{
+public interface MediaDescription extends Serializable, Cloneable {
 
 	/**
 	 * Return the Media field of the description.
@@ -44,7 +43,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param media to set
 	 * @throws SdpException if the media field is null
 	 */
-	public void setMedia( Media media ) throws SdpException;
+	public void setMedia(Media media) throws SdpException;
 
 	/**
 	 * Returns value of the info field (i=) of this object.
@@ -59,7 +58,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param i to set
 	 * @throws SdpException if the info is null
 	 */
-	public void setInfo( Info i ) throws SdpException;
+	public void setInfo(Info i) throws SdpException;
 
 	/**
 	 * Returns the connection information associated with this object. This may
@@ -77,7 +76,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param conn to set
 	 * @throws SdpException if the connexion is null
 	 */
-	public void setConnection( Connection conn ) throws SdpException;
+	public void setConnection(Connection conn) throws SdpException;
 
 	/**
 	 * Returns the Bandwidth of the specified type.
@@ -85,7 +84,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param create type of the Bandwidth to return
 	 * @return the Bandwidth or null if undefined
 	 */
-	public Vector<BandWidth> getBandwidths( boolean create );
+	public Vector<BandWidth> getBandwidths(boolean create);
 
 	/**
 	 * set the value of the Bandwidth with the specified type
@@ -93,7 +92,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param bandwidths type of the Bandwidth object whose value is requested
 	 * @throws SdpException if vector is null
 	 */
-	public void setBandwidths( Vector<BandWidth> bandwidths ) throws SdpException;
+	public void setBandwidths(Vector<BandWidth> bandwidths) throws SdpException;
 
 	/**
 	 * Returns the integer value of the specified bandwidth name.
@@ -102,7 +101,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @throws SdpParseException
 	 * @return the value of the named bandwidth
 	 */
-	public int getBandwidth( String name ) throws SdpParseException;
+	public int getBandwidth(String name) throws SdpParseException;
 
 	/**
 	 * Sets the value of the specified bandwidth type.
@@ -111,14 +110,14 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param value the value of the named bandwidth type.
 	 * @throws SdpException if the name is null
 	 */
-	public void setBandwidth( String name, int value ) throws SdpException;
+	public void setBandwidth(String name, int value) throws SdpException;
 
 	/**
 	 * Removes the specified bandwidth type.
 	 * 
 	 * @param name the name of the bandwidth type.
 	 */
-	public void removeBandwidth( String name );
+	public void removeBandwidth(String name);
 
 	/**
 	 * Returns the key data.
@@ -134,7 +133,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param key the encryption key data; depending on method may be null
 	 * @throws SdpException if the key is null
 	 */
-	public void setKey( Key key ) throws SdpException;
+	public void setKey(Key key) throws SdpException;
 
 	/**
 	 * Returns the set of attributes for this Description as a Vector of
@@ -144,7 +143,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 *            case no attributes exists for this Description
 	 * @return attributes for this Description
 	 */
-	public Vector<Attribute> getAttributes( boolean create );
+	public Vector<Attribute> getAttributes(boolean create);
 
 	/**
 	 * Adds the specified Attribute to this Description object.
@@ -152,7 +151,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param Attributes the attribute to add
 	 * @throws SdpException if the attribute is null
 	 */
-	public void setAttributes( Vector<Attribute> Attributes ) throws SdpException;
+	public void setAttributes(Vector<Attribute> Attributes) throws SdpException;
 
 	/**
 	 * Returns the value of the specified attribute.
@@ -161,7 +160,7 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @throws SdpParseException
 	 * @return the value of the named attribute
 	 */
-	public String getAttribute( String name ) throws SdpParseException;
+	public String getAttribute(String name) throws SdpParseException;
 
 	/**
 	 * Sets the value of the specified attribute
@@ -170,53 +169,52 @@ public interface MediaDescription extends Serializable, Cloneable
 	 * @param value the value of the named attribute.
 	 * @throws SdpException if the parameters are null
 	 */
-	public void setAttribute( String name, String value ) throws SdpException;
+	public void setAttribute(String name, String value) throws SdpException;
 
 	/**
 	 * Removes the attribute specified by the value parameter.
 	 * 
 	 * @param name the name of the attribute.
 	 */
-	public void removeAttribute( String name );
+	public void removeAttribute(String name);
 
-/** Returns a Vector containing a string indicating the MIME type for each of the codecs in this description.
- *<p>
- *     A MIME value is computed for each codec in the media description.
- *<p>
- *
- *     The MIME type is computed in the following fashion:
- *     <ul>
- *         <li> The type is the mediaType from the media field.</li>
- *          <li>The subType is determined by the protocol.</li>
- *</ul>
- *     The result is computed as the string of the form:
- *<p>
- *     type + '/' + subType
- *<p>
- *     The subType portion is computed in the following fashion.
- *     RTP/AVP
- *          the subType is returned as the codec name. This will either be extracted from the rtpmap attribute or computed.
- *     other
- *          the protocol is returned as the subType.
- *
- *     If the protocol is RTP/AVP and the rtpmap attribute for a codec is absent, then the codec name will be computed in the
- *     following fashion.
- *     String indexed in table SdpConstants.avpTypeNames
- *          if the value is an int greater than or equal to 0 and less than AVP_DEFINED_STATIC_MAX, and has been assigned a
- *          value.
- *     SdpConstant.RESERVED
- *          if the value is an int greater than or equal to 0 and less than AVP_DEFINED_STATIC_MAX, and has not been
- *          assigned a value.
- *     SdpConstant.UNASSIGNED
- *          An int greater than or equal to AVP_DEFINED_STATIC_MAX and less than AVP_DYNAMIC_MIN - currently
- *          unassigned.
- *     SdpConstant.DYNAMIC
- *          Any int less than 0 or greater than or equal to AVP_DYNAMIC_MIN
- * @throws SdpException if there is a problem extracting the parameters.
- * @return a Vector containing a string indicating the MIME type for each of the codecs in this description
- */
-public Vector<String> getMimeTypes()
-                    throws SdpException;
+	/** Returns a Vector containing a string indicating the MIME type for each of the codecs in this description.
+	 *<p>
+	 *     A MIME value is computed for each codec in the media description.
+	 *<p>
+	 *
+	 *     The MIME type is computed in the following fashion:
+	 *     <ul>
+	 *         <li> The type is the mediaType from the media field.</li>
+	 *          <li>The subType is determined by the protocol.</li>
+	 *</ul>
+	 *     The result is computed as the string of the form:
+	 *<p>
+	 *     type + '/' + subType
+	 *<p>
+	 *     The subType portion is computed in the following fashion.
+	 *     RTP/AVP
+	 *          the subType is returned as the codec name. This will either be extracted from the rtpmap attribute or computed.
+	 *     other
+	 *          the protocol is returned as the subType.
+	 *
+	 *     If the protocol is RTP/AVP and the rtpmap attribute for a codec is absent, then the codec name will be computed in the
+	 *     following fashion.
+	 *     String indexed in table SdpConstants.avpTypeNames
+	 *          if the value is an int greater than or equal to 0 and less than AVP_DEFINED_STATIC_MAX, and has been assigned a
+	 *          value.
+	 *     SdpConstant.RESERVED
+	 *          if the value is an int greater than or equal to 0 and less than AVP_DEFINED_STATIC_MAX, and has not been
+	 *          assigned a value.
+	 *     SdpConstant.UNASSIGNED
+	 *          An int greater than or equal to AVP_DEFINED_STATIC_MAX and less than AVP_DYNAMIC_MIN - currently
+	 *          unassigned.
+	 *     SdpConstant.DYNAMIC
+	 *          Any int less than 0 or greater than or equal to AVP_DYNAMIC_MIN
+	 * @throws SdpException if there is a problem extracting the parameters.
+	 * @return a Vector containing a string indicating the MIME type for each of the codecs in this description
+	 */
+	public Vector<String> getMimeTypes() throws SdpException;
 
 	/**
 	 * Returns a Vector containing a string of parameters for each of the codecs
@@ -253,7 +251,6 @@ public Vector<String> getMimeTypes()
 	 * @throws SdpException if either vector is null or empty. if the vector sizes
 	 *             are unequal.
 	 */
-	public void addDynamicPayloads( Vector payloadNames, Vector payloadValues )
-			throws SdpException;
+	@SuppressWarnings("rawtypes")
+	public void addDynamicPayloads(Vector payloadNames, Vector payloadValues) throws SdpException;
 }
-

@@ -37,6 +37,7 @@ public class RtspService implements ProxyService {
 	private static Logger log = Logger.getLogger(RtspService.class);
 	private static final int MIN_READ_BUFFER_SIZE = 2048;
 
+	@SuppressWarnings("unused")
 	public void start() throws IOException {
 		// get port and network interface from config file
 		int[] ports = Config.getIntArray("proxy.rtsp.port", Handler.DEFAULT_RTSP_PORT);

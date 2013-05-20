@@ -19,7 +19,6 @@
 package rtspproxy.proxy;
 
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 
 import org.apache.log4j.Logger;
 import org.apache.mina.core.buffer.IoBuffer;
@@ -63,6 +62,7 @@ public class ClientRtpPacketHandler extends IoHandlerAdapter
 		track.forwardRtpToServer( packet );
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void exceptionCaught( IoSession session, Throwable cause ) throws Exception
 	{

@@ -48,9 +48,11 @@ public class SdpFactory extends Object
 {
 
 	// unused since findSessions() is no longer implemented
+	@SuppressWarnings("rawtypes")
 	protected static Vector sessionDescriptionsList;
 
 	/** Creates new SdpFactory */
+	@SuppressWarnings("rawtypes")
 	public SdpFactory()
 	{
 		sessionDescriptionsList = new Vector();
@@ -684,6 +686,7 @@ public class SdpFactory extends Object
 	 * @param source String containing session descriptions.
 	 * @return a collection of Strings containing session descriptions.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Vector findSessions( String source )
 	{
 		// return sessionDescriptionsList;

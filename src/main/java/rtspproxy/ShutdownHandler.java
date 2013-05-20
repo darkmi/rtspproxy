@@ -27,21 +27,19 @@ import rtspproxy.lib.Exceptions;
  * 
  * @author Matteo Merli
  */
-public class ShutdownHandler extends Thread
-{
+public class ShutdownHandler extends Thread {
 
-	private static Logger log = Logger.getLogger( ShutdownHandler.class );
+	private static Logger log = Logger.getLogger(ShutdownHandler.class);
 
-	public void run()
-	{
-		log.info( "Shutting down" );
+	public void run() {
+		log.info("Shutting down");
 		try {
-			log.info( "Stopping " + Config.getName() + " " + Config.getVersion() );
+			log.info("Stopping " + Config.getName() + " " + Config.getVersion());
 			Reactor.stop();
 
-		} catch ( Exception e ) {
-			log.fatal( "Exception in the reactor: " + e );
-			Exceptions.logStackTrace( e );
+		} catch (Exception e) {
+			log.fatal("Exception in the reactor: " + e);
+			Exceptions.logStackTrace(e);
 		}
 	}
 

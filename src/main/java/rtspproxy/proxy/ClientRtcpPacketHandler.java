@@ -66,6 +66,7 @@ public class ClientRtcpPacketHandler extends IoHandlerAdapter
 		track.forwardRtcpToServer( packet );
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void exceptionCaught( IoSession session, Throwable cause ) throws Exception
 	{
