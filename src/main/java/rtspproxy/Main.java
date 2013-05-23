@@ -6,6 +6,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  *   Copyright (C) 2005 - Matteo Merli - matteo.merli@gmail.com            *
+ *   Copyright (C) 2013 - DarkMi       - darkmi@126.com                    *   
  *                                                                         *
  ***************************************************************************/
 
@@ -14,20 +15,16 @@ package rtspproxy;
 import org.apache.log4j.Logger;
 import rtspproxy.lib.Exceptions;
 
-/**
- * 
- */
 public class Main {
 
 	static Logger log = Logger.getLogger("rtspproxy");
 
 	public static void main(String[] args) {
-		// TODO: remove this temp stuffs
 
-		for (Object key : System.getProperties().keySet()) {
-			String value = System.getProperty((String) key);
-			System.out.println(key + " : " + value);
-		}
+		//for (Object key : System.getProperties().keySet()) {
+		//	String value = System.getProperty((String) key);
+		//	System.out.println(key + " : " + value);
+		//}
 
 		// Register the "rtsp://" protocol scheme
 		System.setProperty("java.protocol.handler.pkgs", "rtspproxy");

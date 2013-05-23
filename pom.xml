@@ -17,19 +17,10 @@
 	</organization>
 
 	<properties>
-		<!-- 主要依赖库的版本定义 -->
-		<struts2.version>2.2.1</struts2.version>
-		<activemq.version>5.4.0</activemq.version>
+		<!-- dependency version -->
 		<slf4j.version>1.6.1</slf4j.version>
-		<commons-pool.version>1.6</commons-pool.version>
-		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
-	<issueManagement>
-		<system>Berlios</system>
-		<url>http://developer.berlios.de/bugs/?group_id=4526</url>
-	</issueManagement>
 
 	<licenses>
 		<license>
@@ -46,21 +37,15 @@
 			<!-- <timezone>+1</timezone> -->
 			<url>http://merlimat.net/about</url>
 		</developer>
+		<developer>
+			<id>darkmi</id>
+			<name>DarkMi</name>
+			<email>darkmi@126.com</email>
+			<url>http://www.darkmi.com</url>
+		</developer>
+
 	</developers>
 
-	<!-- <scm> <connection> scm:svn:http://svn.berlios.de/svnroot/repos/rtspproxy/trunk 
-		</connection> <developerConnection> scm:svn:https://svn.berlios.de/svnroot/repos/rtspproxy/trunk 
-		</developerConnection> <url>http://svn.berlios.de/wsvn/rtspproxy/</url> </scm> 
-		<mailingLists> <mailingList> <name>Development list</name> <post>rtspproxy-devel@lists.berlios.de</post> 
-		<archive> http://www.nabble.com/RtspProxy-Devel-f6753.html </archive> <subscribe> 
-		https://lists.berlios.de/mailman/listinfo/rtspproxy-devel </subscribe> <unsubscribe> 
-		https://lists.berlios.de/mailman/listinfo/rtspproxy-devel </unsubscribe> 
-		</mailingList> </mailingLists> <distributionManagement> <downloadUrl> http://rtspproxy.berlios.de/download.html 
-		</downloadUrl> <site> <id>rtspproxy.website</id> <name>Default Site</name> 
-		<url> scp://shell.berlios.de/home/groups/rtspproxy/htdocs </url> </site> 
-		</distributionManagement> -->
-
-	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
 	<repositories>
 		<repository>
 			<id>nexus</id>
@@ -104,14 +89,6 @@
 			</snapshots>
 		</repository>
 
-		<repository>
-			<id>morphia.googlecode.com</id>
-			<name>morphia.googlecode.com Repository</name>
-			<url>http://morphia.googlecode.com/svn/mavenrepo/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
 
 	<dependencies>
@@ -123,14 +100,12 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 
-		<!-- slf4j-log4j绑定 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
 
-		<!-- slf4j没有log4j的情形 -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -166,7 +141,6 @@
 		</dependency>
 		<!-- logging end -->
 
-
 		<dependency>
 			<groupId>org.apache.mina</groupId>
 			<artifactId>mina-core</artifactId>
@@ -201,16 +175,13 @@
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
-				<configuration> <descriptor> src/resources/release/default.xml </descriptor> 
-				</configuration> </plugin> -->
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<configuration>
 					<outputEncoding>UTF-8</outputEncoding>
 				</configuration>
-				<!-- <version>2.0-beta-2</version> -->
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

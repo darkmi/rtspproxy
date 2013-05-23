@@ -31,10 +31,9 @@ import rtspproxy.lib.number.UnsignedLong;
  * 
  * @author Matteo Merli
  */
-public class ProxySession
-{
+public class ProxySession {
 
-	private static Logger log = Logger.getLogger( ProxySession.class );
+	private static Logger log = Logger.getLogger(ProxySession.class);
 
 	protected static final String ATTR = ProxySession.class.toString() + "Attr";
 
@@ -52,9 +51,8 @@ public class ProxySession
 	 *        a string containing the RTSP session ID
 	 * @return the associated ProxySession or null if not found
 	 */
-	public static ProxySession getByClientSessionID( String clientSessionId )
-	{
-		return clientSessionIds.get( clientSessionId );
+	public static ProxySession getByClientSessionID(String clientSessionId) {
+		return clientSessionIds.get(clientSessionId);
 	}
 
 	/**
@@ -65,9 +63,8 @@ public class ProxySession
 	 *        a string containing the RTSP session ID
 	 * @return the associated ProxySession or null if not found
 	 */
-	public static ProxySession getByServerSessionID( String serverSessionId )
-	{
-		return serverSessionIds.get( serverSessionId );
+	public static ProxySession getByServerSessionID(String serverSessionId) {
+		return serverSessionIds.get(serverSessionId);
 	}
 
 	/**
@@ -94,11 +91,9 @@ public class ProxySession
 	 * Construct a new ProxySession. The session ID that will be used when
 	 * communicating with the client will be generated.
 	 */
-	public ProxySession()
-	{
-		setClientSessionId( newSessionID() );
-		log.debug( "\n----------\nCreated new proxy session: " + clientSessionId
-				+ " \n----------" );
+	public ProxySession() {
+		setClientSessionId(newSessionID());
+		log.debug("\n----------\nCreated new proxy session: " + clientSessionId + " \n----------");
 	}
 
 	/**
@@ -110,30 +105,26 @@ public class ProxySession
 	 *        the SSRC id given by the server or null if not provided
 	 * @return a reference to the newly created Track
 	 */
-	public synchronized Track addTrack( String url, String serverSsrc )
-	{
-		Track track = new Track( url );
-		if ( serverSsrc != null )
-			track.setServerSSRC( serverSsrc );
-		trackList.put( url, track );
-		log.debug( "ProxySession: " + clientSessionId + " Added track. TrackList: "
-				+ trackList );
+	public synchronized Track addTrack(String url, String serverSsrc) {
+		Track track = new Track(url);
+		if (serverSsrc != null)
+			track.setServerSSRC(serverSsrc);
+		trackList.put(url, track);
+		log.debug("ProxySession: " + clientSessionId + " Added track. TrackList: " + trackList);
 		return track;
 	}
 
 	/**
 	 * @return the RTSP session id used by the client in this session.
 	 */
-	public String getClientSessionId()
-	{
+	public String getClientSessionId() {
 		return clientSessionId;
 	}
 
 	/**
 	 * @return the RTSP session id used by the server in this session.
 	 */
-	public String getServerSessionId()
-	{
+	public String getServerSessionId() {
 		return serverSessionId;
 	}
 
@@ -143,10 +134,9 @@ public class ProxySession
 	 * @param clientSessionId
 	 *        a string containing the session id
 	 */
-	public synchronized void setClientSessionId( String clientSessionId )
-	{
+	public synchronized void setClientSessionId(String clientSessionId) {
 		this.clientSessionId = clientSessionId;
-		clientSessionIds.put( clientSessionId, this );
+		clientSessionIds.put(clientSessionId, this);
 	}
 
 	/**
@@ -155,45 +145,43 @@ public class ProxySession
 	 * @param clientSessionId
 	 *        a string containing the session id
 	 */
-	public synchronized void setServerSessionId( String serverSessionId )
-	{
+	public synchronized void setServerSessionId(String serverSessionId) {
 		this.serverSessionId = serverSessionId;
-		serverSessionIds.put( serverSessionId, this );
+		serverSessionIds.put(serverSessionId, this);
 	}
 
 	/**
 	 * Closes the entire proxy session and frees all associated resources.
 	 */
-	public synchronized void close()
-	{
-		if ( isClosed )
+	public synchronized void close() {
+		if (isClosed)
 			return;
 
-		log.debug( "TrackList: " + trackList );
+		log.debug("TrackList: " + trackList);
 
 		// close all associated tracks
-		for ( Map.Entry<String, Track> entry : trackList.entrySet() ) {
+		for (Map.Entry<String, Track> entry : trackList.entrySet()) {
 			entry.getValue().close();
 		}
 
 		isClosed = true;
-		log.debug( "Closed proxySession: " + clientSessionId );
+		log.debug("Closed proxySession: " + clientSessionId);
 
 		String s = "";
-		for ( String a : clientSessionIds.keySet() ) {
+		for (String a : clientSessionIds.keySet()) {
 			s += a + " ";
 		}
-		log.debug( "Clients: " + s );
+		log.debug("Clients: " + s);
 		s = "";
-		for ( String a : serverSessionIds.keySet() ) {
+		for (String a : serverSessionIds.keySet()) {
 			s += a + " ";
 		}
-		log.debug( "Servers: " + s );
+		log.debug("Servers: " + s);
 
-		if ( clientSessionId != null )
-			clientSessionIds.remove( clientSessionId );
-		if ( serverSessionId != null )
-			serverSessionIds.remove( serverSessionId );
+		if (clientSessionId != null)
+			clientSessionIds.remove(clientSessionId);
+		if (serverSessionId != null)
+			serverSessionIds.remove(serverSessionId);
 	}
 
 	// ///////////////////
@@ -207,16 +195,15 @@ public class ProxySession
 	 * 
 	 * @return the session ID string.
 	 */
-	private static String newSessionID()
-	{
+	private static String newSessionID() {
 		String id;
-		while ( true ) {
+		while (true) {
 			// Create a 64 bit random number
-			synchronized ( random ) {
-				id = new UnsignedLong( random ).toString();
+			synchronized (random) {
+				id = new UnsignedLong(random).toString();
 			}
 
-			if ( clientSessionIds.get( id ) == null ) {
+			if (clientSessionIds.get(id) == null) {
 				// Ok, the id is unique
 				return id;
 			}

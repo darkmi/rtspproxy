@@ -34,44 +34,38 @@ import rtspproxy.rtp.rtcp.RtcpPacket;
  * 
  * @author Matteo Merli
  */
-public class ClientRtcpPacketHandler extends IoHandlerAdapter
-{
+public class ClientRtcpPacketHandler extends IoHandlerAdapter {
 
-	private static Logger log = Logger.getLogger( ClientRtcpPacketHandler.class );
+	private static Logger log = Logger.getLogger(ClientRtcpPacketHandler.class);
 
 	@Override
-	public void sessionCreated( IoSession session ) throws Exception
-	{
+	public void sessionCreated(IoSession session) throws Exception {
 	}
 
 	@Override
-	public void messageReceived( IoSession session, Object buffer ) throws Exception
-	{
-		RtcpPacket packet = new RtcpPacket( (IoBuffer) buffer );
+	public void messageReceived(IoSession session, Object buffer) throws Exception {
+		RtcpPacket packet = new RtcpPacket((IoBuffer) buffer);
 		// log.debug( "Received RTCP packet: " + packet.getType() );
 
 		// / Track track = (Track)session.getAttribute( "track" );
 
-		Track track = Track.getByClientAddress( (InetSocketAddress) session.getRemoteAddress() );
+		Track track = Track.getByClientAddress((InetSocketAddress) session.getRemoteAddress());
 
-		if ( track == null ) {
+		if (track == null) {
 			// drop packet
-			log.debug( "Invalid address: "
-					+ (InetSocketAddress) session.getRemoteAddress()
-					+ " - Class: "
-					+ ( (InetSocketAddress) session.getRemoteAddress() ).getAddress().getClass() );
+			log.debug("Invalid address: " + (InetSocketAddress) session.getRemoteAddress() + " - Class: "
+					+ ((InetSocketAddress) session.getRemoteAddress()).getAddress().getClass());
 			return;
 		}
 
-		track.forwardRtcpToServer( packet );
+		track.forwardRtcpToServer(packet);
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void exceptionCaught( IoSession session, Throwable cause ) throws Exception
-	{
-		log.debug( "Exception: " + cause );
-		Exceptions.logStackTrace( cause );
+	public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
+		log.debug("Exception: " + cause);
+		Exceptions.logStackTrace(cause);
 		session.close();
 	}
 }
