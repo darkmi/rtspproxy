@@ -56,7 +56,8 @@ public interface TimeZoneAdjustment extends Field {
      * @param map Hashtable to set
      * @throws SdpException if the parameter is null
      */    
-    public void setZoneAdjustments(Hashtable map)
+    @SuppressWarnings("rawtypes")
+	public void setZoneAdjustments(Hashtable map)
                         throws SdpException;
     
     /** Sets whether the field will be output as a typed time or a integer value.
