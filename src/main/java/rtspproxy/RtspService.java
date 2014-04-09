@@ -91,7 +91,6 @@ public class RtspService implements ProxyService {
 		//for (Object service : Reactor.getRegistry().getServices("RtspService")) {
 		//	Reactor.getRegistry().unbind((Service) service);
 		//}
-
 		log.info("RtspService Stopped");
 	}
 }
