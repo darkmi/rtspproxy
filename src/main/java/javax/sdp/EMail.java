@@ -5,23 +5,22 @@
 package javax.sdp;
 
 /**
- * An EMail represents an e= field contained within a SessionDescription. Please
- * refer to IETF RFC 2327 for a description of SDP.
+ * An EMail represents an e= field contained within a SessionDescription. Please refer to IETF RFC
+ * 2327 for a description of SDP.
  * 
  * @author deruelle
  * @version 1.0
  */
-public interface EMail extends Field
-{
+public interface EMail extends Field {
 
-	/**
-	 * Returns the value.
-	 */
-	public String getValue() throws SdpParseException;
+  /**
+   * Returns the value.
+   */
+  public String getValue() throws SdpParseException;
 
-	/**
-	 * Set the value.
-	 */
-	public void setValue( String value ) throws SdpException;
+  /**
+   * Set the value.
+   */
+  public void setValue(String value) throws SdpException;
 
 }

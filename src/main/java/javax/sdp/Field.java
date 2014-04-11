@@ -7,27 +7,25 @@ package javax.sdp;
 import java.io.Serializable;
 
 /**
- * A Field represents a single line of information within a SDP session
- * description.
+ * A Field represents a single line of information within a SDP session description.
  * 
  * @author deruelle
  * @version 1.0
  */
-public interface Field extends Serializable, Cloneable
-{
+public interface Field extends Serializable, Cloneable {
 
-	/**
-	 * Returns the type character for the field.
-	 * 
-	 * @return the type character for the field.
-	 */
-	public char getTypeChar();
+  /**
+   * Returns the type character for the field.
+   * 
+   * @return the type character for the field.
+   */
+  public char getTypeChar();
 
-	/**
-	 * Returns a clone of this field.
-	 * 
-	 * @return a clone of this field.
-	 */
-	public Object clone();
+  /**
+   * Returns a clone of this field.
+   * 
+   * @return a clone of this field.
+   */
+  public Object clone();
 
 }
